@@ -21,6 +21,6 @@ Start the server.
 $ npm start
 ```
 
-Navigate to [`https://localhost:3000`](https://localhost:3000).
+Navigate to [`http://localhost:3000`](http://localhost:3000).
 
 ## License
