@@ -37,3 +37,5 @@ $ npm start
 Navigate to [`http://localhost:3000`](http://localhost:3000).
 
 ## License
+
+[The Unlicense](https://opensource.org/licenses/unlicense)
