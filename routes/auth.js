@@ -8,13 +8,11 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
-router.get('/login/federated/accounts.google.com', passport.authenticate('google', { prompt: 'login' }));
+router.get('/login/federated/accounts.google.com', passport.authenticate('google'));
 
 router.get('/oauth2/redirect/accounts.google.com',
   passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: '/login' }),
   function(req, res, next) {
-    console.log(req.federatedUser)
-    
     db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
       'https://accounts.google.com',
       req.federatedUser.id
