@@ -69,12 +69,6 @@ Added to the scaffolding are files which add authentication to the application.
 
 * [routes/auth.js](boot/auth.js)
 
-
-#### routes/auth.js
-
-
-
-
 ## License
 
 [The Unlicense](https://opensource.org/licenses/unlicense)
