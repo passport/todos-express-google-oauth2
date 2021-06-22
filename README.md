@@ -64,18 +64,22 @@ Added to the scaffolding are files which add authentication to the application.
 
 * [`boot/auth.js`](boot/auth.js)
 
-  This file initializes Passport.  It configures the Google strategy and supplies
-  the serialization functions used for session management. 
+  This file initializes Passport.  It configures the Google strategy and
+  supplies the serialization functions used for session management.
 
 * [`routes/auth.js`](routes/auth.js)
 
-  This file defines the routes used for authentication.  In particular, there are
-  two routes used to authenticate with Google:
+  This file defines the routes used for authentication.  In particular, there
+  are three routes used to authenticate with Google:
+  
+  - `GET /login`
+  
+    This route renders a page that prompts the user to sign in with Google.
   
   - `GET /login/federated/accounts.google.com`
   
-  This route begins the authentication sequence by redirecting the user to
-  Google.
+    This route begins the authentication sequence by redirecting the user to
+    Google.
   
   - `POST /oauth2/redirect/accounts.google.com`
   
