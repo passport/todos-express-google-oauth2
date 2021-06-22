@@ -57,17 +57,17 @@ example.
 
 Added to the scaffolding are files which add authentication to the application.
 
-* [boot/db.js](blob/master/boot/db.js)
+* [boot/db.js](boot/db.js)
 
   This file initializes the database by creating the tables used to store user
   accounts and credentials.
 
-* [boot/auth.js](blob/master/boot/auth.js)
+* [boot/auth.js](boot/auth.js)
 
   This file initializes Passport.  It configures the Google strategy and supplies
   the serialization functions used for session management. 
 
-* [routes/auth.js](blob/master/boot/auth.js)
+* [routes/auth.js](boot/auth.js)
 
 
 #### routes/auth.js
