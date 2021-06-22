@@ -39,7 +39,7 @@ Navigate to [`http://localhost:3000`](http://localhost:3000).
 ## Overview
 
 This example illustrates how to use [Passport](https://www.passportjs.org) and
-the [`passport-google-oauth20`](https://github.com/jaredhanson/passport-google-oauth2)
+the [`passport-google-oauth20`](https://www.passportjs.org/packages/passport-google-oauth20/)
 strategy within an [Express](https://expressjs.com) application to sign users in
 with [Google](https://www.google.com).
 
