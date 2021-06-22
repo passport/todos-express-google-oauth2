@@ -1,5 +1,5 @@
 var passport = require('passport');
-var Strategy = require('passport-google-oauth20').Strategy;
+var Strategy = require('passport-google-oauth20');
 
 
 module.exports = function() {

@@ -10,7 +10,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/login/federated/accounts.google.com', passport.authenticate('google', { prompt: 'login' }));
 
-router.get('/oauth2/redirect/accounts.google.com', 
+router.get('/oauth2/redirect/accounts.google.com',
   passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: '/login' }),
   function(req, res, next) {
     console.log(req.federatedUser)
