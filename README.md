@@ -83,10 +83,10 @@ Added to the scaffolding are files which add authentication to the application.
   
   - `POST /oauth2/redirect/accounts.google.com`
   
-  This route completes the authentication sequence when Google redirects the
-  user back to the application.  When a new user signs in, a user account is
-  automatically created and their Google account is linked.  When an existing
-  user returns, they are signed in to their linked account.
+    This route completes the authentication sequence when Google redirects the
+    user back to the application.  When a new user signs in, a user account is
+    automatically created and their Google account is linked.  When an existing
+    user returns, they are signed in to their linked account.
 
 ## License
 
