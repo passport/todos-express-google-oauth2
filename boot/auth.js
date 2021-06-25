@@ -15,7 +15,8 @@ module.exports = function() {
       clientID: process.env['GOOGLE_CLIENT_ID'],
       clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
       callbackURL: '/oauth2/redirect/accounts.google.com',
-      scope: [ 'profile' ]
+      scope: [ 'profile' ],
+      state: true
     },
     function(accessToken, refreshToken, profile, cb) {
       // In this example, the user's Facebook profile is supplied as the user
