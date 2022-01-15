@@ -1,14 +1,19 @@
 {
   "name": "express-4.x-google-oauth2-example",
   "version": "0.0.0",
-  "description": "Express 4.x app using Passport for sign in with Google.",
+  "private": true,
+  "description": "Todo app using Express, Passport, and SQLite for sign in with Google.",
   "keywords": [
     "example",
     "express",
-    "passport"
+    "passport",
+    "sqlite"
   ],
-  "author": "Jared Hanson",
-  "license": "Unlicense",
+  "author": {
+    "name": "Jared Hanson",
+    "email": "jaredhanson@gmail.com",
+    "url": "https://www.jaredhanson.me/"
+  },
   "homepage": "https://github.com/passport/express-4.x-google-oauth2-example",
   "repository": {
     "type": "git",
@@ -17,6 +22,11 @@
   "bugs": {
     "url": "https://github.com/passport/express-4.x-google-oauth2-example/issues"
   },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/jaredhanson"
+  },
+  "license": "Unlicense",
   "scripts": {
     "start": "node ./bin/www"
   },
