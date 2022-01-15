@@ -11,28 +11,15 @@
 	<body>
 		<section class="prompt">
 			<h3>todos</h3>
-			<form action="/login/password" method="post">
-				<h1>Sign in</h3>
-				<% if (hasMessages) { %>
-				<section class="messages">
-					<% messages.forEach(function(message) { %>
-					<p><%= message %></p>
-					<% }); %>
-				</section>
-				<% } %>
-				<section>
-					<label for="username">Username</label>
-					<input id="username" name="username" type="text" autocomplete="username" required autofocus>
-				</section>
-				<section>
-					<label for="current-password">Password</label>
-					<input id="current-password" name="password" type="password" autocomplete="current-password" required>
-				</section>
-				<input type="hidden" name="_csrf" value="<%= csrfToken %>">
-				<button type="submit">Sign in</button>
-			</form>
-			<hr>
-			<p class="help">Don't have an account? <a href="/signup">Sign up</a></p>
+			<h1>Sign in</h3>
+			<% if (hasMessages) { %>
+			<section class="messages">
+				<% messages.forEach(function(message) { %>
+				<p><%= message %></p>
+				<% }); %>
+			</section>
+			<% } %>
+			<a class="button" href="/login/federated/accounts.google.com">Sign in with Google</a>
 		</section>
 		<footer class="info">
 			<p>Created by <a href="https://www.jaredhanson.me">Jared Hanson</a></p>
