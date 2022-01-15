@@ -104,7 +104,11 @@ router.get('/oauth2/redirect/accounts.google.com',
     
   });
 
-router.get('/logout', function(req, res, next) {
+/* POST /logout
+ *
+ * This route logs the user out.
+ */
+router.post('/logout', function(req, res, next) {
   req.logout();
   res.redirect('/');
 });
