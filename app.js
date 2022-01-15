@@ -12,7 +12,6 @@ var authRouter = require('./routes/auth');
 
 var app = express();
 
-require('./boot/db')();
 require('./boot/auth')();
 
 // view engine setup
