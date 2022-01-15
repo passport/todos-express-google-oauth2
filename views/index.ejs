@@ -12,7 +12,7 @@
 		<section class="todoapp">
 			<nav class="nav">
 				<ul>
-					<li class="user"><%= user.username %></li>
+					<li class="user"><%= user.name || user.username %></li>
 					<li>
 						<form action="/logout" method="post">
 							<button class="logout" type="submit">Sign out</button>

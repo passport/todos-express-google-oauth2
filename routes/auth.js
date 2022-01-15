@@ -84,8 +84,8 @@ router.get('/oauth2/redirect/accounts.google.com',
           ], function(err) {
             if (err) { return next(err); }
             var user = {
-              id: id.toString(),
-              displayName: req.federatedUser.displayName
+              id: id,
+              name: req.federatedUser.displayName
             };
             req.login(user, function(err) {
               if (err) { return next(err); }
@@ -98,12 +98,7 @@ router.get('/oauth2/redirect/accounts.google.com',
           if (err) { return next(err); }
     
           // TODO: Handle undefined row.
-          var user = {
-            id: row.id.toString(),
-            username: row.username,
-            displayName: row.name
-          };
-          req.login(user, function(err) {
+          req.login(row, function(err) {
             if (err) { return next(err); }
             res.redirect('/');
           });
