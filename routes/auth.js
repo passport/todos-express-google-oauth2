@@ -24,7 +24,43 @@ passport.use(new GoogleStrategy({
     // be associated with a user record in the application's database, which
     // allows for account linking and authentication with other identity
     // providers.
-    return cb(null, profile);
+    //return cb(null, profile);
+    
+    db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
+      'https://accounts.google.com',
+      profile.id
+    ], function(err, row) {
+      if (err) { return next(err); }
+      if (!row) {
+        db.run('INSERT INTO users (name) VALUES (?)', [
+          profile.displayName
+        ], function(err) {
+          if (err) { return next(err); }
+          
+          var id = this.lastID;
+          db.run('INSERT INTO federated_credentials (user_id, provider, subject) VALUES (?, ?, ?)', [
+            id,
+            'https://accounts.google.com',
+            profile.id
+          ], function(err) {
+            if (err) { return next(err); }
+            var user = {
+              id: id,
+              name: profile.displayName
+            };
+            return cb(null, user);
+          });
+        });
+      } else {
+        db.get('SELECT rowid AS id, * FROM users WHERE rowid = ?', [ row.user_id ], function(err, row) {
+          if (err) { return next(err); }
+          if (!row) { return cb(null, false); }
+          return cb(null, row);
+        });
+      }
+    });
+    
+    
   }));
   
 // Configure Passport authenticated session persistence.
@@ -62,51 +98,10 @@ router.get('/login/federated/accounts.google.com', passport.authenticate('google
     automatically created and their Google account is linked.  When an existing
     user returns, they are signed in to their linked account.
 */
-router.get('/oauth2/redirect/accounts.google.com',
-  passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: '/login' }),
-  function(req, res, next) {
-    db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
-      'https://accounts.google.com',
-      req.federatedUser.id
-    ], function(err, row) {
-      if (err) { return next(err); }
-      if (!row) {
-        db.run('INSERT INTO users (name) VALUES (?)', [
-          req.federatedUser.displayName
-        ], function(err) {
-          if (err) { return next(err); }
-          
-          var id = this.lastID;
-          db.run('INSERT INTO federated_credentials (provider, subject, user_id) VALUES (?, ?, ?)', [
-            'https://accounts.google.com',
-            req.federatedUser.id,
-            id
-          ], function(err) {
-            if (err) { return next(err); }
-            var user = {
-              id: id,
-              name: req.federatedUser.displayName
-            };
-            req.login(user, function(err) {
-              if (err) { return next(err); }
-              res.redirect('/');
-            });
-          });
-        });
-      } else {
-        db.get('SELECT rowid AS id, username, name FROM users WHERE rowid = ?', [ row.user_id ], function(err, row) {
-          if (err) { return next(err); }
-    
-          // TODO: Handle undefined row.
-          req.login(row, function(err) {
-            if (err) { return next(err); }
-            res.redirect('/');
-          });
-        });
-      }
-    });
-    
-  });
+router.get('/oauth2/redirect/accounts.google.com', passport.authenticate('google', {
+  successReturnToOrRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 /* POST /logout
  *
