@@ -47,12 +47,21 @@ passport.deserializeUser(function(obj, cb) {
 
 var router = express.Router();
 
+// This route renders a page that prompts the user to sign in with Google.
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+// This route begins the authentication sequence by redirecting the user to
+//    Google.
 router.get('/login/federated/accounts.google.com', passport.authenticate('google'));
 
+/*
+    This route completes the authentication sequence when Google redirects the
+    user back to the application.  When a new user signs in, a user account is
+    automatically created and their Google account is linked.  When an existing
+    user returns, they are signed in to their linked account.
+*/
 router.get('/oauth2/redirect/accounts.google.com',
   passport.authenticate('google', { assignProperty: 'federatedUser', failureRedirect: '/login' }),
   function(req, res, next) {
