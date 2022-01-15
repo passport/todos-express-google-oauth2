@@ -25,12 +25,16 @@ a.button {
 	padding: 10px;
 	width: 100%;
 	border-radius: 3px;
-	background: blue;
+	background: #000;
 	font-size: 14px;
 	font-weight: 700;
 	text-align: center;
 	text-decoration: none;
 	color: white;
+}
+
+a.google {
+	background: #4787ed;
 }
 
 button:hover {
