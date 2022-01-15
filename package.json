@@ -1,5 +1,5 @@
 {
-  "name": "express-4.x-google-oauth2-example",
+  "name": "todos-express-google-oauth2",
   "version": "0.0.0",
   "private": true,
   "description": "Todo app using Express, Passport, and SQLite for sign in with Google.",
@@ -14,13 +14,13 @@
     "email": "jaredhanson@gmail.com",
     "url": "https://www.jaredhanson.me/"
   },
-  "homepage": "https://github.com/passport/express-4.x-google-oauth2-example",
+  "homepage": "https://github.com/passport/todos-express-google-oauth2",
   "repository": {
     "type": "git",
-    "url": "git://github.com/passport/express-4.x-google-oauth2-example.git"
+    "url": "git://github.com/passport/todos-express-google-oauth2.git"
   },
   "bugs": {
-    "url": "https://github.com/passport/express-4.x-google-oauth2-example/issues"
+    "url": "https://github.com/passport/todos-express-google-oauth2/issues"
   },
   "funding": {
     "type": "github",
