@@ -2,13 +2,13 @@ require('dotenv').config();
 
 var express = require('express');
 var passport = require('passport');
+var csrf = require('csurf');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
-var myaccountRouter = require('./routes/myaccount');
 
 var app = express();
 
@@ -32,11 +32,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 // data.  If session data contains a logged in user, the user is set at
 // `req.user`.
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(csrf());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+  var msgs = req.session.messages || [];
+  res.locals.messages = msgs;
+  res.locals.hasMessages = !! msgs.length;
+  req.session.messages = [];
+  next();
+});
+app.use(function(req, res, next) {
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
-app.use('/myaccount', myaccountRouter);
 
 module.exports = app;
