@@ -87,13 +87,30 @@ passport.deserializeUser(function(user, cb) {
 
 var router = express.Router();
 
-// This route renders a page that prompts the user to sign in with Google.
+/* GET /login
+ *
+ * This route prompts the user to log in.
+ *
+ * The 'login' view renders an HTML page, which contain a button prompting the
+ * user to sign in with Google.  When the user clicks this button, a request
+ * will be sent to the `GET /login/federated/accounts.google.com` route.
+ */
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
-// This route begins the authentication sequence by redirecting the user to
-//    Google.
+/* GET /login/federated/accounts.google.com
+ *
+ * This route redirects the user to Google, where they will authenticate.
+ *
+ * Signing in with Google is implemented using OAuth 2.0.  This route initiates
+ * an OAuth 2.0 flow by redirecting the user to Google's identity server at
+ * 'https://accounts.google.com'.  Once there, Google will authenticate the user
+ * and obtain their consent to release identity information to this app.
+ *
+ * Once Google has completed their interaction with the user, the user will be
+ * redirected back to the app at `GET /oauth2/redirect/accounts.google.com`.
+ */
 router.get('/login/federated/accounts.google.com', passport.authenticate('google'));
 
 /*
