@@ -9,7 +9,7 @@ Use this example as a starting point for your own web applications.
 To run this app, clone the repository and install dependencies:
 
 ```bash
-$ git clone git@github.com:passport/todos-express-google-oauth2.git
+$ git clone https://github.com/passport/todos-express-google-oauth2.git
 $ cd todos-express-google-oauth2
 $ npm install
 ```
