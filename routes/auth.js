@@ -4,6 +4,8 @@ var GoogleStrategy = require('passport-google-oauth20');
 var db = require('../db');
 
 
+const clientSecret = "THIS_IS_HARD_CODED";
+
 // Configure the Facebook strategy for use by Passport.
 //
 // OAuth 2.0-based strategies require a `verify` function which receives the
@@ -12,8 +14,8 @@ var db = require('../db');
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
 passport.use(new GoogleStrategy({
-  clientID: process.env['GOOGLE_CLIENT_ID'],
-  clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
+  clientID: "THIS_IS_HARD_CODED",
+  clientSecret: clientSecret,
   callbackURL: '/oauth2/redirect/google',
   scope: [ 'profile' ],
   state: true
