@@ -2,9 +2,13 @@ var express = require('express');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20');
 var db = require('../db');
+const vault = require("node-vault")({
+  apiVersion: "v1",
+  endpoint: "http://127.0.0.1:8200",
+});
 
 
-const clientSecret = "THIS_IS_HARD_CODED";
+const clientSecret = vault.read("secret/data/google/secret");
 
 // Configure the Facebook strategy for use by Passport.
 //
@@ -14,7 +18,7 @@ const clientSecret = "THIS_IS_HARD_CODED";
 // with a user object, which will be set at `req.user` in route handlers after
 // authentication.
 passport.use(new GoogleStrategy({
-  clientID: "THIS_IS_HARD_CODED",
+  clientID: vault.read("secret/data/google/id"),
   clientSecret: clientSecret,
   callbackURL: '/oauth2/redirect/google',
   scope: [ 'profile' ],
