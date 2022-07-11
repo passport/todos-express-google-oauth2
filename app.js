@@ -14,7 +14,8 @@ var logger = require('morgan');
 var SQLiteStore = require('connect-sqlite3')(session);
 
 var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
+var googleRouter = require('./routes/google');
+var twitRouter = require('./routes/twitter');
 
 var app = express();
 
@@ -50,7 +51,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/', authRouter);
+app.use('/', googleRouter);
+app.use('/', twitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
